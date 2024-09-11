@@ -49,6 +49,16 @@ const projectDatabase = [
     gitlink: "https://github.com/mohitsharma012/PokeHub.git",
     technologies: ["react", "tailwind", "js"],
   },
+  {
+    id: 6,
+    title: "MohitCodes: Portfolio Website Built on Next.js",
+    description:
+      "MohitCodes is a sleek portfolio website developed with Next.js, highlighting my projects, skills, and professional achievements. It offers a modern, interactive experience to showcase my work and expertise.",
+    imageUrl: "mohitcodes.png",
+    livelink: "https://www.mohitcodes.com/",
+    gitlink: "https://github.com/mohitsharma012/mohitcodes.git",
+    technologies: ["next", "tailwind", "typescript", "react"],
+  },
 ];
 
 export default projectDatabase;
