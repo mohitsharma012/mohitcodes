@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import projectDatabase from "@/lib/projectDatabase";
+import projectDatabase from "../../lib/projectDatabase";
 
 const page = () => {
   return (
