@@ -1,5 +1,7 @@
+"use client"; // Marking this component as a Client Component
 import Image from "next/image";
 import Link from "next/link";
+import projectDatabase from "@/lib/projectDatabase";
 
 export default function Home() {
   return (
@@ -25,10 +27,7 @@ export default function Home() {
           >
             Connect with me
           </Link>
-          <Link
-            href="/contact"
-            className="text-5xl absolute  bottom-36 md:bottom-12 animate-bounce	"
-          >
+          <button className="text-5xl absolute  bottom-36 md:bottom-12 animate-bounce	">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -43,7 +42,7 @@ export default function Home() {
                 d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5"
               />
             </svg>
-          </Link>
+          </button>
         </div>
       </section>
 
@@ -210,34 +209,20 @@ export default function Home() {
         <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
           <div className="max-w-3xl flex flex-col  mx-auto text-center">
             <h2 className="text-3xl text-amber-600 font-bold leading-tight sm:text-4xl lg:text-5xl">
-            My Creations
+              My Creations
             </h2>
           </div>
 
           <div className="grid grid-cols-1 gap-6 mt-8 sm:grid-cols-2 md:mt-16 lg:gap-x-12">
-            <Link href="/project/id" >             
-              <img
-                className="w-full rounded-3xl transition ease-in-out   hover:-translate-z-2 hover:scale-110 duration-300 border  "
-                src="https://mohitji.site/media/projectsImages/WhatsApp_Image_2024-05-15_at_16.15.04_293ee116.jpg"
-                alt=""
-              />
-            </Link>
-            <Link href="/project/id" >             
-              <img
-                className="w-full rounded-3xl transition ease-in-out   hover:-translate-z-2 hover:scale-110 duration-300 border  "
-                src="https://mohitji.site/media/projectsImages/WhatsApp_Image_2024-05-15_at_16.15.04_293ee116.jpg"
-                alt=""
-              />
-            </Link>
-            <Link href="/project/id" >             
-              <img
-                className="w-full rounded-3xl transition ease-in-out   hover:-translate-z-2 hover:scale-110 duration-300 border  "
-                src="https://mohitji.site/media/projectsImages/WhatsApp_Image_2024-05-15_at_16.15.04_293ee116.jpg"
-                alt=""
-              />
-            </Link>
-
-            
+            {projectDatabase.slice(0, 4).map((project) => (
+              <Link href={`/project/${project.id}`}>
+                <img
+                  className="w-full rounded-3xl transition ease-in-out h-full  hover:-translate-z-2 hover:scale-110 duration-300 border  "
+                  src={`/projects/${project.imageUrl}`}
+                  alt=""
+                />
+              </Link>
+            ))}
           </div>
 
           <div className="mt-8 text-center cursor-pointer	 md:mt-16">
