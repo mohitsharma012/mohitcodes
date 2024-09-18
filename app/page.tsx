@@ -15,12 +15,12 @@ import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 export default function Home() {
   return (
     <>
-      <section className="h-[100vh] rounded-md bg-neutral-900 flex flex-col items-center justify-center relative w-full">
+      <section className="h-[100vh] rounded-md bg-black flex flex-col items-center justify-center relative w-full scroll-smooth	">
         <div className="flex flex-col z-20 align-middle m-auto gap-4 items-center ">
           <h2 className="text-3xl   text-orange-400		 sm:text-3xl font-mono font-thin opacity-75">
-            <TextGenerateEffect className="text-3xl   text-orange-400		 sm:text-3xl font-mono font-thin opacity-75" words="Hi, my name is " />
+            <TextGenerateEffect className="text-3xl   text-orange-400		 sm:text-3xl font-mono font-thin sm:opacity-75" words="Hi, my name is " />
           </h2>
-          <h2 className="text-5xl font-thin sm:text-7xl -mt-4 font-mono">
+          <h2 className="text-5xl font-thin sm:text-7xl sm:-mt-4 font-mono">
             <TextGenerateEffect words="Mohit Sharma" />
           </h2>
           <h2 className="text-2xl font-thin font-serif sm:text-4xl">
@@ -52,10 +52,10 @@ export default function Home() {
         </div>
 
         <ShootingStars />
-        <StarsBackground />
+        <StarsBackground className="" />
       </section>      
 
-      <section className="py-10 bg-neutral-900  sm:py-16 lg:py-40">
+      <section className="py-10 bg-black  sm:py-16 lg:py-40">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl font-bold  sm:text-4xl text-amber-600 sm:leading-tight">
@@ -170,7 +170,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-16 bg-neutral-900  sm:pt-16 pb-26 ">
+      <section className="py-16 bg-black  sm:pt-16 pb-26 ">
         <div className="max-w-5xl px-4 mx-auto sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl text-amber-600 font-bold leading-tight sm:text-4xl lg:text-5xl">
@@ -214,7 +214,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-10  bg-neutral-900  md:pb-24 ">
+      <section className="py-10  bg-black  md:pb-24 ">
         <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
           <div className="max-w-3xl flex flex-col  mx-auto text-center">
             <h2 className="text-3xl text-amber-600 font-bold leading-tight sm:text-4xl lg:text-5xl">
