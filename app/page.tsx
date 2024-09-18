@@ -3,27 +3,33 @@ import Image from "next/image";
 import Link from "next/link";
 import projectDatabase from "@/lib/projectDatabase";
 
+import React from "react";
+import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
+
+import { ShootingStars } from "@/components/ui/shooting-stars";
+import { StarsBackground } from "@/components/ui/stars-background";
+import { HeroHighlight, Highlight } from "@/components/ui/hero-highlight";
+import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
+
+
 export default function Home() {
   return (
     <>
-      <section className="pt-10  bg-[url(linear-gradient(315deg,#b8c6db,#f5f7fa 74%))] flex overflow-hidden  md:pt-0 sm:pt-16 2xl:pt-16 h-[90vh]">
-        <div className="flex flex-col align-middle m-auto gap-4 items-center ">
-          <h2 className="text-2xl   text-amber-500		 sm:text-3xl font-mono font-thin opacity-75">
-            Hi, my name is
+      <section className="h-[100vh] rounded-md bg-neutral-900 flex flex-col items-center justify-center relative w-full">
+        <div className="flex flex-col z-20 align-middle m-auto gap-4 items-center ">
+          <h2 className="text-3xl   text-orange-400		 sm:text-3xl font-mono font-thin opacity-75">
+            <TextGenerateEffect className="text-3xl   text-orange-400		 sm:text-3xl font-mono font-thin opacity-75" words="Hi, my name is " />
           </h2>
-          <h2 className="text-5xl font-thin sm:text-7xl -mt-3 font-mono">
-            Mohit Sharma
+          <h2 className="text-5xl font-thin sm:text-7xl -mt-4 font-mono">
+            <TextGenerateEffect words="Mohit Sharma" />
           </h2>
           <h2 className="text-2xl font-thin font-serif sm:text-4xl">
-            Full Stack Developer
+            <TextGenerateEffect words="Full Stack Developer" />
           </h2>
-          {/* <p className="max-w-lg my-4 mb-8 text-xl leading-7 text-gray-500 md:mt-8">
-                Hi, I’m Mohit Sharma, a passionate Web Developer specializing in
-                creating modern, responsive websites and applications.
-              </p> */}
+       
           <Link
             href="/contact"
-            className="bg-amber-600 rounded mt-5 md:mt-8 text-gray-300 px-8 py-2 hover:bg-amber-900 text-lg "
+            className="bg-amber-700 rounded mt-5 md:mt-5 text-white px-7 py-2 hover:bg-amber-900 text-lg "
           >
             Connect with me
           </Link>
@@ -44,9 +50,12 @@ export default function Home() {
             </svg>
           </button>
         </div>
-      </section>
 
-      <section className="py-10 sm:py-16 lg:py-40">
+        <ShootingStars />
+        <StarsBackground />
+      </section>      
+
+      <section className="py-10 bg-neutral-900  sm:py-16 lg:py-40">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl font-bold  sm:text-4xl text-amber-600 sm:leading-tight">
@@ -54,7 +63,7 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="grid items-center max-w-4xl grid-cols-2 mx-auto mt-12 md:mt-16 md:grid-cols-4 gap-x-2 gap-y-2 md:gap-y-6">
+          <div className="grid items-center max-w-4xl grid-cols-2 mx-auto mt-12 md:mt-16 md:grid-cols-4 gap-x-1 gap-y-5 md:gap-y-8">
             <div>
               <img
                 className="object-contain w-28  md:w-32 mx-auto"
@@ -102,7 +111,7 @@ export default function Home() {
             </div>
             <div>
               <img
-                className="object-contain w-24 md:w-32 mx-auto rounded-xl"
+                className="object-contain w-16 mx-auto rounded-xl"
                 src="/icons/bootstrapIcon.png"
                 alt=""
               />
@@ -161,7 +170,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-16  sm:pt-16 pb-26 ">
+      <section className="py-16 bg-neutral-900  sm:pt-16 pb-26 ">
         <div className="max-w-5xl px-4 mx-auto sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl text-amber-600 font-bold leading-tight sm:text-4xl lg:text-5xl">
@@ -205,7 +214,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-10  md:pb-24 ">
+      <section className="py-10  bg-neutral-900  md:pb-24 ">
         <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
           <div className="max-w-3xl flex flex-col  mx-auto text-center">
             <h2 className="text-3xl text-amber-600 font-bold leading-tight sm:text-4xl lg:text-5xl">
@@ -216,11 +225,15 @@ export default function Home() {
           <div className="grid grid-cols-1 gap-6 mt-8 sm:grid-cols-2 md:mt-16 lg:gap-x-12">
             {projectDatabase.slice(0, 4).map((project) => (
               <Link href={`/project/${project.id}`}>
-                <img
-                  className="w-full rounded-3xl transition ease-in-out h-full  hover:-translate-z-2 hover:scale-110 duration-300 border  "
-                  src={`/projects/${project.imageUrl}`}
-                  alt=""
-                />
+                <CardContainer className="">
+                  <Image
+                    src={`/projects/${project.imageUrl}`}
+                    height="1000"
+                    width="1000"
+                    className=" w-auto object-cover aspect-video rounded-xl group-hover/card:shadow-xl"
+                    alt="thumbnail"
+                  />
+                </CardContainer>
               </Link>
             ))}
           </div>

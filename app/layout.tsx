@@ -28,9 +28,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <head>
-        <link rel="shortcut icon" href="/Images/favicon.ico" type="image/x-icon" />
+        <link
+          rel="shortcut icon"
+          href="/Images/favicon.ico"
+          type="image/x-icon"
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
@@ -39,8 +43,7 @@ export default function RootLayout({
         <SideSocial />
 
         {children}
-        <Footer/>
-
+        <Footer />
       </body>
     </html>
   );

@@ -3,7 +3,7 @@ import React from "react";
 const page = () => {
   return (
     <>
-      <section className="w-full pt-36 flex max-h-[80vh]">
+      <section className="w-full pt-36 bg-black flex max-h-[80vh]">
         <div className="mx-auto ">
           <h2 className="text-4xl text-center m-auto font-mono tracking-tight text-orange-500 font-bold  sm:text-5xl ">
             Want to react out to me ?

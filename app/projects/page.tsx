@@ -1,6 +1,10 @@
 import React from "react";
 import Link from "next/link";
 import projectDatabase from "../../lib/projectDatabase";
+import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
+import Image from "next/image";
+
+
 
 const page = () => {
   return (
@@ -19,11 +23,15 @@ const page = () => {
         <div className="grid grid-cols-1 gap-6 mt-8 sm:grid-cols-2 md:mt-16 lg:gap-x-12">
           {projectDatabase.map((project) => (
             <Link href={`/project/${project.id}`}>
-              <img
-                className="w-full rounded-3xl transition ease-in-out h-full hover:-translate-z-2 hover:scale-110 duration-300 border  "
-                src={`/projects/${project.imageUrl}`}
-                alt=""
-              />
+              <CardContainer className="">
+                  <Image
+                    src={`/projects/${project.imageUrl}`}
+                    height="1000"
+                    width="1000"
+                    className=" w-auto object-cover aspect-video rounded-xl group-hover/card:shadow-xl"
+                    alt="thumbnail"
+                  />
+                </CardContainer>
             </Link>
           ))}
         </div>

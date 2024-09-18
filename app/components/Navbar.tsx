@@ -9,7 +9,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="fixed bg-black w-full shadow-md z-10">
+      <nav className="fixed  w-full shadow-md z-10">
         <div className="flex mx-4 md:mx-12 items-center justify-between h-24">
           {/* Logo */}
           <div className="flex-shrink-0">
@@ -59,12 +59,12 @@ const Navbar = () => {
             >
               Projects
             </Link>
-            <Link
+            {/* <Link
               href="/about"
               className="text-base font-normal hover:-translate-y-2 ease-in-out transition-all duration-200 hover:text-opacity-80"
             >
               About
-            </Link>
+            </Link> */}
             <Link
               href="/contact"
               className="text-base font-normal hover:-translate-y-2 ease-in-out transition-all duration-200 hover:text-opacity-80"
@@ -109,12 +109,12 @@ const Navbar = () => {
                 >
                   Projects
                 </Link>
-                <Link
+                {/* <Link
                   href="/about"
                   className="text-base font-normal hover:text-opacity-80"
                 >
                   About
-                </Link>
+                </Link> */}
                 <Link
                   href="/contact"
                   className="text-base font-normal hover:text-opacity-80"
