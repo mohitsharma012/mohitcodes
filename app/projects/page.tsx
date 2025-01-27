@@ -1,12 +1,48 @@
+"use client";
 import React from "react";
 import Link from "next/link";
-import projectDatabase from "../../lib/projectDatabase";
+// import projectDatabase from "../../lib/projectDatabase";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 import Image from "next/image";
+
+import { useState, useEffect } from "react";
+
 
 
 
 const page = () => {
+  
+    const [projectDatabase, setprojectDatabase] = useState<any[]>([])
+  
+    const fetchProjectData = async () => {
+      try {
+        const response = await fetch(`/api/project`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        console.log("Response:", response);
+  
+        // Ensure a successful response
+        if (!response.ok) {
+          throw new Error("Failed to fetch projects");
+        }
+  
+        const data = await response.json();
+        setprojectDatabase([...data]);  // Replace with the fetched data
+        console.log("Projects fetched:", projectDatabase);  // Log the updated database for debugging
+      } catch (error) {
+        console.error("Error fetching project data:", error);
+      }
+    }
+  
+  
+    useEffect(() => {
+      fetchProjectData();
+    }
+      , [])
+  
   return (
     <section className="py-10 pt-40 ">
       <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
@@ -22,10 +58,10 @@ const page = () => {
 
         <div className="grid grid-cols-1 gap-6 mt-8 sm:grid-cols-2 md:mt-16 lg:gap-x-12">
           {projectDatabase.map((project) => (
-            <Link href={`/project/${project.id}`}>
+            <Link href={`/project/${project._id}`}>
               <CardContainer className="">
                   <Image
-                    src={`/projects/${project.imageUrl}`}
+                    src={project.imageUrl}
                     height="1000"
                     width="1000"
                     className=" w-auto object-cover aspect-video rounded-xl group-hover/card:shadow-xl"

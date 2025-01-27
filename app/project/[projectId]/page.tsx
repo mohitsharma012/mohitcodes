@@ -4,16 +4,67 @@
 import React from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import projectDatabase from "@/lib/projectDatabase";
+import { useState, useEffect } from "react";
 
 const ProjectPage = () => {
-  const { projectId } = useParams(); // Get projectId from URL
+    const { projectId } = useParams(); // Get projectId from URL
+    interface Project {
+        imageUrl: string;
+        title: string;
+        description: string;
+        livelink: string;
+        gitlink: string;
+        technologies: string[];
+    }
+
+    const [project, setProject] = useState<Project | null>(null);
+
+  
+  
+    const fetchProjectData = async () => {
+      try {
+
+        const response = await fetch(`/api/project/${projectId}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        console.log("Response:", response);
+  
+        // Ensure a successful response
+        if (!response.ok) {
+          throw new Error("Failed to fetch projects");
+        }
+
+        setProject(await response.json());
+        console.log("Project:", project);
+
+  
+
+
+
+      } catch (error) {
+        console.error("Error fetching project data:", error);
+      }
+    }
+  
+  
+    useEffect(() => {
+      fetchProjectData();
+    }
+      , [])
+  
+
+  // const { projectId } = useParams(); // Get projectId from URL
   console.log(projectId);
 
-  const project = projectDatabase.find(
-    (project) => project.id === Number(projectId)
-  );
-  console.log(project);
+  // const project = projectDatabase.find(
+  //   (project) => project._id === Number(projectId)
+  // );
+  // console.log(project);
+
+  // const project = async
 
   return (
     <>
@@ -21,7 +72,7 @@ const ProjectPage = () => {
         <div className="flex mx-5 flex-col max-w-7xl md:mx-auto md:flex-row gap-16">
           <img
             className=" md:w-1/2 rounded-3xl transition ease-in-out md:ms-12 hover:shadow-2xl hover:shadow-gray-700  hover:-translate-z-2 hover:scale-110 duration-300 border  "
-            src={`/projects/${project ? project.imageUrl : "img"}`}
+            src={project?.imageUrl}
             alt=""
           />
           <div>
@@ -63,7 +114,7 @@ const ProjectPage = () => {
           </h2>
           <div className="w-auto  m-auto mx-5 flex-wrap md:mx-auto flex gap-8  mt-12">
             {project
-              ? project.technologies.map((tech) => (
+              ? project.technologies.map((tech: string) => (
                   <div className="flex  h-[5vh]  align-middle mx-auto md:h-[vh] ">
                     <img
                       src={`/icons/${tech}Icon.png`}
