@@ -105,12 +105,12 @@ const Navbar = () => {
           >
             GET STARTED
           </Link>
-          <button
+          {/* <button
             onClick={toggleTheme}
             className="text-xl ps-4"
           >
             {theme === "light" ? "🌞" : "🌙"}
-          </button>
+          </button> */}
 
           {/* Hamburger Menu for Mobile */}
           {!navbarOpen && (
