@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 // import projectDatabase from "@/lib/projectDatabase";
+import BackgroundIndexImage from "@/public/Images/background-index.jpg";
 
 import React, { use, useEffect, useState } from "react";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
@@ -9,12 +10,11 @@ import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 import { ShootingStars } from "@/components/ui/shooting-stars";
 import { StarsBackground } from "@/components/ui/stars-background";
 import { HeroHighlight, Highlight } from "@/components/ui/hero-highlight";
+
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 
-
 export default function Home() {
-
-  const [projectDatabase, setprojectDatabase] = useState<any[]>([])
+  const [projectDatabase, setprojectDatabase] = useState<any[]>([]);
 
   const fetchProjectData = async () => {
     try {
@@ -32,25 +32,26 @@ export default function Home() {
       }
 
       const data = await response.json();
-      setprojectDatabase([...data]);  // Replace with the fetched data
-      console.log("Projects fetched:", projectDatabase);  // Log the updated database for debugging
+      setprojectDatabase([...data]); // Replace with the fetched data
+      console.log("Projects fetched:", projectDatabase); // Log the updated database for debugging
     } catch (error) {
       console.error("Error fetching project data:", error);
     }
-  }
-
+  };
 
   useEffect(() => {
     fetchProjectData();
-  }
-    , [])
+  }, []);
 
   return (
     <>
-      <section className="h-[100vh] rounded-md bg-black flex flex-col items-center justify-center relative w-full scroll-smooth	">
+      <section className="h-[100vh]   flex flex-col items-center justify-center relative w-full scroll-smooth	bg-[url('/Images/background-index.jpg')] bg-cover bg-center bg-no-repeat">
         <div className="flex flex-col z-20 align-middle m-auto gap-4 items-center ">
-          <h2 className="text-3xl   text-orange-400		 sm:text-3xl font-mono font-thin opacity-75">
-            <TextGenerateEffect className="text-3xl   text-orange-400		 sm:text-3xl font-mono font-thin sm:opacity-75" words="Hi, my name is " />
+          <h2 className="text-3xl   text-orange-700		 sm:text-3xl font-mono font-thin ">
+            <TextGenerateEffect
+              className="text-3xl sm:text-4xl"
+              words="Hi, my name is "
+            />
           </h2>
           <h2 className="text-5xl font-thin sm:text-7xl sm:-mt-4 font-mono">
             <TextGenerateEffect words="Mohit Sharma" />
@@ -58,7 +59,7 @@ export default function Home() {
           <h2 className="text-2xl font-thin font-serif sm:text-4xl">
             <TextGenerateEffect words="Full Stack Developer" />
           </h2>
-       
+
           <Link
             href="/contact"
             className="bg-amber-700 rounded mt-5 md:mt-5 text-white px-7 py-2 hover:bg-amber-900 text-lg "
@@ -83,11 +84,245 @@ export default function Home() {
           </button>
         </div>
 
-        <ShootingStars />
-        <StarsBackground className="" />
-      </section>      
+        {/* <ShootingStars />
+        <StarsBackground className="" /> */}
+      </section>
 
-      <section className="py-10 bg-black  sm:py-16 lg:py-40">
+      {/* <section className="py-16   sm:pt-16 pb-26 ">
+        <div className="max-w-5xl px-4 mx-auto sm:px-6 lg:px-8">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-xl font-mono font-bold leading-tight text-[#43b7ff] ">
+              Building Solutions, Creating Impact
+            </h2>
+            <h2 className="text-4xl font-mono font-bold tracking-tight text-white ">
+              NUMBERS TELL OUR STORY
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-2 gap-16 mt-16 text-center lg:mt-16 sm:gap-x-8 md:grid-cols-3">
+            <div>
+              <h3 className="font-bold text-5xl md:text-6xl">
+                <span className="text-transparent bg-clip-text text-white">
+                  {" "}
+                  25+{" "}
+                </span>
+              </h3>
+              <p className="mt-4 text-xl font-medium text-gray-300">
+                Projects Built
+              </p>
+            </div>
+            <div>
+              <h3 className="font-bold text-5xl md:text-6xl">
+                <span className="text-transparent bg-clip-text text-white">
+                  {" "}
+                  10+{" "}
+                </span>
+              </h3>
+              <p className="mt-4 text-xl font-medium text-gray-300">Clients</p>
+            </div>
+            <div className="col-span-2 md:col-span-1">
+              <h3 className="font-bold w-full m-auto text-5xl md:text-6xl">
+                <span className="text-transparent bg-clip-text text-white">
+                  {" "}
+                  40+{" "}
+                </span>
+              </h3>
+              <p className="mt-4 text-xl font-medium text-gray-300">
+                worked with
+              </p>
+            </div>
+          </div>
+        </div>
+      </section> */}
+
+      <section className="py-1">
+        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-xl font-mono font-bold leading-tight text-[#43b7ff] ">
+              WHAT WE DO
+            </h2>
+            <h2 className="text-3xl font-mono font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+              Never Worry About Your Website Ever Again
+            </h2>
+          </div>
+
+          <div className="grid max-w-xl grid-cols-1 mx-auto mt-20  lg:max-w-full sm:mt-12 lg:mt-20 lg:grid-cols-3 gap-x-6 xl:gap-x-12 gap-y-6">
+            <div className="overflow-hidden bg-[#020617] border rounded-md shadow">
+              <div className="px-8 py-12">
+                <img
+                  className=" absolute mt-[-10vh] object-cover w-20 md:w-20 md:h-20 mx-auto rounded-full"
+                  src="https://cdn.rareblocks.xyz/collection/celebration/images/testimonials/1/avatar-1.jpg"
+                  alt=""
+                />
+
+                <h2 className="text-2xl mt-6 font-mono font-bold leading-tight text-white">
+                  MOBILE FIRST DESIGN
+                </h2>
+                <h2 className="text-base mt-3  tracking-tight text-gray-400 ">
+                  We start building your Website for mobile devices first making
+                  sure the code is as lean and optimized with no bloated waste
+                  and make the site even more responsive.
+                </h2>
+              </div>
+            </div>
+
+            <div className="overflow-hidden bg-[#020617] border rounded-md shadow">
+              <div className="px-8 py-12">
+                <img
+                  className=" absolute mt-[-10vh] object-cover w-20 md:w-20 md:h-20 mx-auto rounded-full"
+                  src="https://cdn.rareblocks.xyz/collection/celebration/images/testimonials/1/avatar-1.jpg"
+                  alt=""
+                />
+
+                <h2 className="text-2xl mt-6 font-mono font-bold leading-tight text-white">
+                  MOBILE FIRST DESIGN
+                </h2>
+                <h2 className="text-base mt-3  tracking-tight text-gray-400 ">
+                  We start building your Website for mobile devices first making
+                  sure the code is as lean and optimized with no bloated waste
+                  and make the site even more responsive.
+                </h2>
+              </div>
+            </div>
+            <div className="overflow-hidden bg-[#020617] border rounded-md shadow">
+              <div className="px-8 py-12">
+                <img
+                  className=" absolute mt-[-10vh] object-cover w-20 md:w-20 md:h-20 mx-auto rounded-full"
+                  src="https://cdn.rareblocks.xyz/collection/celebration/images/testimonials/1/avatar-1.jpg"
+                  alt=""
+                />
+
+                <h2 className="text-2xl mt-6 font-mono font-bold leading-tight text-white">
+                  MOBILE FIRST DESIGN
+                </h2>
+                <h2 className="text-base mt-3  tracking-tight text-gray-400 ">
+                  We start building your Website for mobile devices first making
+                  sure the code is as lean and optimized with no bloated waste
+                  and make the site even more responsive.
+                </h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-10  sm:py-16 lg:py-24">
+        <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+          <div className="max-w-2xl  ">
+            <h2 className="text-xl font-mono font-bold leading-tight text-[#43b7ff] ">
+              PORTFOLIO
+            </h2>
+            <h2 className="text-3xl font-mono font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+              SOME OF THE WORK WE’VE DONE OVER THE YEARS
+            </h2>
+          </div>
+          <div className="grid max-w-md grid-cols-1 mx-auto mt-12 lg:max-w-full lg:mt-16 lg:grid-cols-3 gap-x-16 gap-y-12">
+            {projectDatabase.slice(0, 3).map((project) => (
+              <div>
+                <a
+                  href={`/project/${project._id}`}
+                  title=""
+                  className="block aspect-w-4 aspect-h-3"
+                >
+                  <img
+                    className="object-cover duration-700 w-full h-full transition ease-in-out hover:-translate-y-hover:-translate-z-4 hover:scale-105"
+                    src={project.imageUrl}
+                    alt="img"
+                  />
+                </a>
+
+                <p className="mt-6 text-BASE font-bold">{project.title}</p>
+                <p className="mt-3 font-sans text-sm text-gray-400">
+                  {project.description}
+                </p>
+                <a
+                  href={`/project/${project._id}`}
+                  className="inline-flex px-4 py-2 text-xs  font-semibold tracking-widest uppercase rounded-full text-black bg-sky-100 mt-6 hover:bg-sky-200"
+                >
+                  More Details
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="pt-16 pb-28  ">
+        <div className="max-w-5xl bg-[#020617] shadow border-gray-600 border-4 rounded-xl p-16  mx-auto ">
+          <div className="text-center lg:flex lg:items-center lg:justify-between lg:text-left">
+            <h2 className="text-4xl font-sans font-bold  text-white w-1/2 ">
+              READY TO GET THE SITE YOU ALWAYS WANTED?
+            </h2>
+            <Link
+              href="/contact"
+              className="hidden lg:block px-8 ms-auto my-auto py-3 text-sm font-bold font-sans text-black transition-all duration-200 border border-transparent rounded-3xl bg-gradient-to-r  focus:outline-none hover:bg-white focus:opacity-10  bg-gray-300 shadow-sm shadow-cyan-500/50 inset-shadow-sm drop-shadow-xl"
+            >
+              GET STARTED TODAY
+            </Link>
+
+            {/* <form action="#" method="POST" className="px-10 mt-8 lg:mt-0 lg:px-0">
+                <div className="sm:flex sm:justify-center lg:justify-end">
+                    <div>
+                        <label for="email" className="sr-only"></label>
+                        <input
+                            type="email"
+                            name="email"
+                            id="email"
+                            placeholder="Enter email to get started"
+                            className="block w-full px-4 py-4 text-base text-black placeholder-gray-500 transition-all duration-200 border-gray-200 rounded-md sm:rounded-r-none caret-blue-600 focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
+                            required
+                        />
+                    </div>
+                    
+                </div>
+            </form> */}
+          </div>
+        </div>
+      </section>
+
+      {/* 
+      <section className="py-10 bg-black sm:py-16 lg:py-24">
+        <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+          <div className="max-w-2xl  ">
+            <h2 className="text-xl font-mono font-bold leading-tight text-[#43b7ff] ">
+              PORTFOLIO
+            </h2>
+            <h2 className="text-3xl font-mono font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+              SOME OF THE WORK WE’VE DONE OVER THE YEARS
+            </h2>
+          </div>
+          <div className="grid max-w-md grid-cols-1 mx-auto mt-12 lg:max-w-full lg:mt-16 lg:grid-cols-3 gap-x-16 gap-y-12">
+            {projectDatabase.slice(0, 3).map((project) => (
+              <div>
+                <a
+                  href={`/project/${project._id}`}
+                  title=""
+                  className="block aspect-w-4 aspect-h-3"
+                >
+                  <img
+                    className="object-cover duration-700 w-full h-full transition ease-in-out hover:-translate-y-hover:-translate-z-4 hover:scale-105"
+                    src={project.imageUrl}
+                    alt="img"
+                  />
+                </a>
+
+                <p className="mt-6 text-BASE font-bold">{project.title}</p>
+                <p className="mt-3 font-sans text-sm text-gray-400">
+                  {project.description}
+                </p>
+                <a
+                  href={`/project/${project._id}`}
+                  className="inline-flex px-4 py-2 text-xs  font-semibold tracking-widest uppercase rounded-full text-black bg-sky-100 mt-6 hover:bg-sky-200"
+                >
+                  More Details
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section> */}
+
+      {/* <section className="py-10 bg-black  sm:py-16 lg:py-40">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl font-bold  sm:text-4xl text-amber-600 sm:leading-tight">
@@ -200,52 +435,9 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      <section className="py-16 bg-black  sm:pt-16 pb-26 ">
-        <div className="max-w-5xl px-4 mx-auto sm:px-6 lg:px-8">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl text-amber-600 font-bold leading-tight sm:text-4xl lg:text-5xl">
-              Numbers tell our story
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-2 gap-16 mt-16 text-center lg:mt-16 sm:gap-x-8 md:grid-cols-3">
-            <div>
-              <h3 className="font-bold text-5xl md:text-6xl">
-                <span className="text-transparent bg-clip-text text-white">
-                  {" "}
-                  10+{" "}
-                </span>
-              </h3>
-              <p className="mt-4 text-xl font-medium text-gray-300">
-                Projects Built
-              </p>
-            </div>
-            <div>
-              <h3 className="font-bold text-5xl md:text-6xl">
-                <span className="text-transparent bg-clip-text text-white">
-                  {" "}
-                  5+{" "}
-                </span>
-              </h3>
-              <p className="mt-4 text-xl font-medium text-gray-300">Clients</p>
-            </div>
-            <div className="col-span-2 md:col-span-1">
-              <h3 className="font-bold w-full m-auto text-5xl md:text-6xl">
-                <span className="text-transparent bg-clip-text text-white">
-                  {" "}
-                  20+{" "}
-                </span>
-              </h3>
-              <p className="mt-4 text-xl font-medium text-gray-300">
-                worked with
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
+      {/* 
       <section className="py-10  bg-black  md:pb-24 ">
         <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
           <div className="max-w-3xl flex flex-col  mx-auto text-center">
@@ -279,7 +471,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   );
 }

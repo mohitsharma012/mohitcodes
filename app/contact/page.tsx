@@ -3,11 +3,12 @@ import React from "react";
 const page = () => {
   return (
     <>
-      <section className="w-full pt-36 bg-black flex max-h-[80vh]">
+     <section className=" bg-[url('/Images/pageHeaderBackground.jpg')] bg-cover w-[calc(300% + 1.3px)] min-h-[50vh] bg-bottom bg-no-repeat flex">
+      <h1 className="m-auto text-3xl md:text-5xl pt-16 font-bold tracking-tight">CONTACT US</h1>
+    </section>
+      <section className="w-full mt-[-11vh] flex max-h-[80vh]">
         <div className="mx-auto ">
-          <h2 className="text-4xl text-center m-auto font-mono tracking-tight text-orange-500 font-bold  sm:text-5xl ">
-            Want to react out to me ?
-          </h2>
+          
           <img
             src="/Images/contactArrow.png"
             className="w-[300vh] h-[60vh] hidden md:block"

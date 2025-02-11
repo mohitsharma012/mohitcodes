@@ -4,12 +4,9 @@ const projectSchema = new mongoose.Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },  
   imageUrl: { type: String }, 
-  livelink: { type: String, required: true },
-  gitlink: { type: String, required: true },
-  technologies: {
-    type: [String],  
-    required: true
-  },
+  imageUrl_2: { type: String }, 
+  imageUrl_3: { type: String }, 
+  livelink: { type: String },
 });
 
 // Check if the model is already compiled to prevent overwrite errors

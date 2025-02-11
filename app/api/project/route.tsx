@@ -8,12 +8,11 @@ async function connectToDatabase() {
   await db();
 }
 
-connectToDatabase();
-
-
 export async function GET(request: Request) {
   const url = new URL(request.url);
-  const id = url.searchParams.get('id'); // Get the 'id' from query params
+  const id = url.searchParams.get('id'); 
+
+  await connectToDatabase();
   
   if (id) {
     const project = await Project.findById(id);
@@ -30,21 +29,21 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   try {
-    const { title, description, imageUrl, livelink, gitlink, technologies } = await request.json();
+    const { title, description, imageUrl, imageUrl_2, imageUrl_3, livelink,  } = await request.json();
 
-    // Ensure 'technologies' is an array of strings
-    const techArray = Array.isArray(technologies) ? technologies : [technologies];
+    if (!(title && description && imageUrl )) {
+      return NextResponse.json({ message: 'Missing required fields' }, { status: 400 });
+    }
 
-    console.log('techArray:', techArray);
-    console.log('imageUrl:', imageUrl);
+    await connectToDatabase();
 
     const project = new Project({
       title,
       description,
       imageUrl,
-      livelink,
-      gitlink,
-      technologies: techArray, // Ensuring it's an array
+      imageUrl_2,
+      imageUrl_3,
+      livelink
     });
 
     await project.save();
@@ -56,43 +55,3 @@ export async function POST(request: Request) {
 }
 
 
-export async function PUT(request: Request) {
-  try {
-    const { id, title, description, imageUrl, livelink, gitlink, technologies } = await request.json();
-
-    // Ensure 'technologies' is an array of strings
-    const techArray = Array.isArray(technologies) ? technologies : [technologies];
-
-    const project = await Project.findByIdAndUpdate(id, {
-      title,
-      description,
-      imageUrl,
-      livelink,
-      gitlink,
-      technologies: techArray, // Ensuring it's an array
-    }, { new: true });
-
-    if (project) {
-      return NextResponse.json(project);
-    } else {
-      return NextResponse.json({ message: 'Project not found' }, { status: 404 });
-    }
-  } catch (error) {
-    console.error('Error during project update:', error);
-    return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 });
-  }
-}
-
-export async function DELETE(request: Request) {
-  try {
-    const { id } = await request.json();
-
-    await Project.findByIdAndDelete(id);
-
-    return NextResponse.json({ message: 'Project deleted' }, { status: 200 });
-  }
-  catch (error) {
-    console.error('Error during project deletion:', error);
-    return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 });
-  }
-}

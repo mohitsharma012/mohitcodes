@@ -5,128 +5,122 @@ import React from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import Loader from "@/app/components/loader";
 
 const ProjectPage = () => {
-    const { projectId } = useParams(); // Get projectId from URL
-    interface Project {
-        imageUrl: string;
-        title: string;
-        description: string;
-        livelink: string;
-        gitlink: string;
-        technologies: string[];
-    }
+  const { projectId } = useParams();
+  const [loading, setLoading] = useState(true)
+  interface Project {
+    imageUrl: string;
+    imageUrl_2: string;
+    imageUrl_3: string;
+    title: string;
+    description: string;
+    livelink: string;
+  }
 
-    const [project, setProject] = useState<Project | null>(null);
+  const [project, setProject] = useState<Project | null>(null);
 
-  
-  
-    const fetchProjectData = async () => {
-      try {
+  const fetchProjectData = async () => {
+    try {
+      const response = await fetch(`/api/project/${projectId}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
-        const response = await fetch(`/api/project/${projectId}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        console.log("Response:", response);
-  
-        // Ensure a successful response
-        if (!response.ok) {
-          throw new Error("Failed to fetch projects");
-        }
-
-        setProject(await response.json());
-        console.log("Project:", project);
-
-  
-
-
-
-      } catch (error) {
-        console.error("Error fetching project data:", error);
+      if (!response.ok) {
+        throw new Error("Failed to fetch projects");
       }
+      setProject(await response.json());
+      setLoading(false)
+    } catch (error) {
+      console.error("Error fetching project data:", error);
     }
-  
-  
-    useEffect(() => {
-      fetchProjectData();
-    }
-      , [])
-  
+  };
 
-  // const { projectId } = useParams(); // Get projectId from URL
-  console.log(projectId);
-
-  // const project = projectDatabase.find(
-  //   (project) => project._id === Number(projectId)
-  // );
-  // console.log(project);
-
-  // const project = async
+  useEffect(() => {
+    fetchProjectData();
+  }, []);
 
   return (
     <>
-      <section className="py-32 md:py-52 w-full">
-        <div className="flex mx-5 flex-col max-w-7xl md:mx-auto md:flex-row gap-16">
-          <img
-            className=" md:w-1/2 rounded-3xl transition ease-in-out md:ms-12 hover:shadow-2xl hover:shadow-gray-700  hover:-translate-z-2 hover:scale-110 duration-300 border  "
-            src={project?.imageUrl}
-            alt=""
-          />
-          <div>
-            <h1 className="text-4xl font-bold  sm:text-5xl">
-              {project ? project.title : "Project not found"}
-            </h1>
+    {loading ? (
+      <Loader/>
+    ):
+      <section className="py-32 flex md:py-52 w-full">
+        <div className="flex max-w-7xl mx-auto">
+          <div className="flex mx-5 flex-col max-w-7xl md:mx-auto  gap-6">
+            {project && project.imageUrl && (
+              <img
+              className=" md:w-4/5 rounded-3xl transition ease-in-out md:ms-12 hover:shadow-2xl hover:shadow-gray-700  hover:-translate-z-2 hover:scale-110 duration-300 border  "
+              src={project ? project.imageUrl : "/images/404.jpg"}
+              alt=""
+              />
+            )}
 
-            <p className="mt-4 text-base text-gray-400 sm:text-xl">
-              {project ? project.description : "Project not found"}
-            </p>
+            {project && project.imageUrl_2 && (
+              
+              <img
+              className=" md:w-4/5 rounded-3xl transition ease-in-out md:ms-12 hover:shadow-2xl hover:shadow-gray-700  hover:-translate-z-2 hover:scale-110 duration-300 border  "
+              src={project ? project.imageUrl_2 : "/images/404.jpg"}
+              alt=""
+              />
+            )}
 
-            <div className="mt-10 flex sm:items-center  gap-5">
-              <Link
-                href={project ? project.livelink : "/"}
-                title=""
-                target="_blank"
-                className="inline-flex items-center justify-center w-52 py-3 text-base font-semibold text-white transition-all duration-200 bg-orange-600 hover:bg-orange-800 focus:bg-orange-700"
-                role="button"
-              >
-                {" "}
-                View Project
-              </Link>
-              <Link
-                href={project ? project.gitlink : "/"}
-                title=""
-                target="_blank"
-                className="inline-flex items-center justify-center w-52 py-3 text-base font-semibold text-white transition-all duration-200  border-2 border-orange-600 hover:bg-orange-600 focus:bg-orange-700"
-                role="button"
-              >
-                {" "}
-                View Code
-              </Link>
-            </div>
+            {project && project.imageUrl_3 && (
+              
+              <img
+              className=" md:w-4/5 rounded-3xl transition ease-in-out md:ms-12 hover:shadow-2xl hover:shadow-gray-700  hover:-translate-z-2 hover:scale-110 duration-300 border  "
+              src={project ? project.imageUrl_3 : "/images/404.jpg"}
+              alt=""
+              />
+            )}
           </div>
-        </div>
-        <div className="w-full mt-16 md:mt-36 flex flex-col ">
-          <h2 className="text-3xl text-center m-auto font-sans text-orange-500 font-bold leading-tight sm:text-5xl ">
-            What Technologies are used?{" "}
-          </h2>
-          <div className="w-auto  m-auto mx-5 flex-wrap md:mx-auto flex gap-8  mt-12">
-            {project
-              ? project.technologies.map((tech: string) => (
-                  <div className="flex  h-[5vh]  align-middle mx-auto md:h-[vh] ">
-                    <img
-                      src={`/icons/${tech}Icon.png`}
-                      alt=""
-                      className=" h-auto mx-auto rounded "
-                    />
-                  </div>
-                ))
-              : null}
+          <div className="w-full mt-16 md:mt-36 flex flex-col ">
+            <div>
+              <h1 className="text-4xl font-bold  ">
+                {project ? project.title : "Project not found"}
+              </h1>
+
+              <p className="mt-4 text-base text-gray-400 sm:text-xl">
+                {project ? project.description : "Project not found"}
+              </p>
+              {/* <textarea name="" id=""  className="mt-4 text-base text-gray-400 sm:text-xl bg-[#020617] p-4 w-full h-screen  rounded-xl">
+                {project ? project.description : "Project not found"}
+              </textarea> */}
+
+              {project && project.livelink ? (
+                <div className="mt-10 flex sm:items-center  gap-5">
+                  <Link
+                    href={project ? project.livelink : "/"}
+                    title=""
+                    target="_blank"
+                    className="inline-flex items-center rounded-md justify-center w-52 py-3 text-base font-semibold text-white transition-all duration-200 bg-blue-600 hover:bg-blue-800 focus:bg-blue-800"
+                    role="button"
+                  >
+                    {" "}
+                    View 
+                  </Link>
+                  {/* <Link
+                    href={project ? project.gitlink : "/"}
+                    title=""
+                    target="_blank"
+                    className="inline-flex items-center justify-center w-52 py-3 text-base font-semibold text-white transition-all duration-200  border-2 border-orange-600 hover:bg-orange-600 focus:bg-orange-700"
+                    role="button"
+                  >
+                    {" "}
+                    View Code
+                  </Link> */}
+                </div>
+              ) : null}
+            </div>
+           
           </div>
         </div>
       </section>
+    }
     </>
   );
 };
