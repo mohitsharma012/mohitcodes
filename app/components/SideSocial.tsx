@@ -4,8 +4,8 @@ import Link from "next/link";
 const SideSocial = () => {
   return (
     <>
-      <div className="fixed flex bottom-0 z-20 w-full md:w-auto bg-black md:bg-transparent ">
-        <div className="md:flex-col flex  gap-5 text-xl mx-auto md:mx-12 align-center my-5 ">
+      <div className="fixed flex bottom-0 z-20 w-full md:w-auto bg-white md:bg-transparent ">
+        <div className="md:flex-col flex text-black/90 gap-5 text-xl mx-auto md:mx-12 align-center my-5 ">
           <Link
             href="https://www.linkedin.com/in/mohit012/"
             target="_blank"
