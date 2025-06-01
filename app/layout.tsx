@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next"
 
 import Navbar from "./components/Navbar";
 import SideSocial from "./components/SideSocial";
@@ -40,11 +41,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        
         <Navbar />
         <SideSocial />
 
         {children}
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
