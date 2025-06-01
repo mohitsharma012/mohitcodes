@@ -78,11 +78,11 @@ const ProjectsPage = () => {
           {/* Projects Grid Section */}
           <section className="py-20 bg-white/95">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                   {/* Project Cards */}
                   {ProjectData.sort((a, b) => a.position - b.position).map((project) => (
                     <div key={project.id} className="group shadow-xl relative bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden">
-                      <div className="relative w-full h-48 overflow-hidden">
+                      <div className="relative w-full h-72 overflow-hidden">
                         <img
                           src={project.imageUrl}
                           alt={project.title}
